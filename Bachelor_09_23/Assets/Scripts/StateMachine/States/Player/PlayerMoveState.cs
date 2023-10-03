@@ -24,7 +24,7 @@ public class PlayerMoveState : Day
 
         if(input.x == 0 && input.y == 0)
         {
-            stateMachine.ChangeState(player.IdleState);
+            stateMachine.ChangePlayerState(player.IdleState);
         }
     }
 

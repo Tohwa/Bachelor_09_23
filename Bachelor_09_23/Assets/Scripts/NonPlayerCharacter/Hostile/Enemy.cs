@@ -6,8 +6,6 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private Transform rightPatrol;
-    [SerializeField] private Transform leftPatrol;
 
     public NavMeshAgent Agent { get; private set; }
     public Rigidbody RB { get; private set; }
@@ -16,9 +14,9 @@ public class Enemy : MonoBehaviour
 
     public StateMachine EnemyStateMachine { get; private set; }
 
-    public CarnivoreIdleState IdleState { get; private set; }
-    public CarnivorePatrolState PatrolState { get; private set; }
-    public CarnivoreHuntingState HuntingState { get; private set; }
+    //public CarnivoreIdleState IdleState { get; private set; }
+    //public CarnivorePatrolState PatrolState { get; private set; }
+    //public CarnivoreHuntingState HuntingState { get; private set; }
 
     [SerializeField]
     private NPCData enemyData;
@@ -28,9 +26,9 @@ public class Enemy : MonoBehaviour
     {
         EnemyStateMachine = new StateMachine();
 
-        IdleState = new CarnivoreIdleState(this, EnemyStateMachine, enemyData);
-        PatrolState = new CarnivorePatrolState(this, EnemyStateMachine, enemyData);
-        HuntingState = new CarnivoreHuntingState(this, EnemyStateMachine, enemyData);
+        //IdleState = new CarnivoreIdleState(this, EnemyStateMachine, enemyData);
+        //PatrolState = new CarnivorePatrolState(this, EnemyStateMachine, enemyData);
+        //HuntingState = new CarnivoreHuntingState(this, EnemyStateMachine, enemyData);
 
     }
 
@@ -40,7 +38,7 @@ public class Enemy : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        EnemyStateMachine.InitEnemyState(IdleState);
+        //EnemyStateMachine.InitEnemyState(IdleState);
     }
 
     private void Update()
@@ -50,16 +48,16 @@ public class Enemy : MonoBehaviour
 
     public void EnemyPatrol()
     {
-        if (transform.position == leftPatrol.position)
-        {
-            Agent.SetDestination(rightPatrol.position);
-            Agent.isStopped = false;
-        }
-        else
-        {
-            Agent.SetDestination(leftPatrol.position);
-            Agent.isStopped = false;
-        }
+        //if (transform.position == leftPatrol.position)
+        //{
+        //    Agent.SetDestination(rightPatrol.position);
+        //    Agent.isStopped = false;
+        //}
+        //else
+        //{
+        //    Agent.SetDestination(leftPatrol.position);
+        //    Agent.isStopped = false;
+        //}
     }
 
     public void ChaseTarget()

@@ -52,7 +52,8 @@ public class Player : MonoBehaviour
             {
                 requests.Add(SoundRequest.Request(footSteps));
             }
-        }
+        }       
+        Debug.DrawRay(transform.position, Vector3.forward, Color.black);
     }
 
     private void FixedUpdate()
@@ -63,8 +64,22 @@ public class Player : MonoBehaviour
     public void MovePlayer(float inputX, float inputY)
     {
         Vector3 movement = new Vector3(inputX, 0f, inputY) * playerData.moveSpeed * Time.deltaTime;
-        movement = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movement;
+        //movement = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movement;
         movement = Vector3.ClampMagnitude(movement, 1) * 3;
         RB.MovePosition(transform.position + transform.TransformDirection(movement));
+        Aim();
+    }
+
+    private void Aim()
+    {
+        var (success, position) = InputHandler.GetMousePosition();
+
+        if (success)
+        {
+            var direction = position - transform.position;
+            direction.y = 0;
+
+            transform.forward = direction;
+        }
     }
 }

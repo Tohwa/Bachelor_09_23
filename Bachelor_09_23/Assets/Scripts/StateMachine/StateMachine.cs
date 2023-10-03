@@ -29,7 +29,7 @@ public class StateMachine
         curNPCState.EnterState();
     }
 
-    public void ChangeState(BaseState _newState)
+    public void ChangePlayerState(BaseState _newState)
     {
         curPlayerState.ExitState();
         curPlayerState = _newState;
