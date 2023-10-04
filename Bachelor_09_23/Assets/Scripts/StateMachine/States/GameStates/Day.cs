@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Day : BaseState
 {
-    protected Vector2 input;
 
     public Day(Player _player, StateMachine _stateMachine, PlayerData _playerData) : base(_player, _stateMachine, _playerData)
     {

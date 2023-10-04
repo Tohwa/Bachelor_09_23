@@ -9,7 +9,7 @@ public class StateMachine
 {
     public BaseState curPlayerState;
     public BaseState curEnemyState;
-    public BaseState curNPCState;
+    public BaseState curAnimalState;
 
     public void InitPlayerState(BaseState _startState)
     {
@@ -25,8 +25,8 @@ public class StateMachine
 
     public void InitNPCState(BaseState _startState)
     {
-        curNPCState = _startState;
-        curNPCState.EnterState();
+        curAnimalState = _startState;
+        curAnimalState.EnterState();
     }
 
     public void ChangePlayerState(BaseState _newState)
@@ -45,8 +45,8 @@ public class StateMachine
 
     public void ChangeNPCState(BaseState _newState)
     {
-        curNPCState.ExitState();
-        curNPCState = _newState;
-        curNPCState.EnterState();
+        curAnimalState.ExitState();
+        curAnimalState = _newState;
+        curAnimalState.EnterState();
     }
 }

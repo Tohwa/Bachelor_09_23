@@ -13,12 +13,14 @@ public abstract class BaseState
     protected PlayerData playerData;
     protected NPCData npcData;
 
-    protected float startTime;
+    protected Vector2 input;
+
+    //private float startTime;
 
     //private string animBoolName;
     #endregion
 
-    public BaseState(Enemy _enemy, StateMachine _stateMachine, NPCData _npcData/*, string _animBoolName */)
+    public BaseState(Enemy _enemy, StateMachine _stateMachine, NPCData _npcData/*, String _animBoolName */)
     {
         enemy = _enemy;
         stateMachine = _stateMachine;
@@ -26,7 +28,7 @@ public abstract class BaseState
         //animBoolName = _animBoolName;
     }
 
-    public BaseState(NeutralNPC _animal, StateMachine _stateMachine, NPCData _npcData/*, string _animeBoolName */)
+    public BaseState(NeutralNPC _animal, StateMachine _stateMachine, NPCData _npcData/*, String _animBoolName */)
     {
         animal = _animal;
         stateMachine = _stateMachine;
@@ -34,7 +36,7 @@ public abstract class BaseState
         //animBoolName = _animBoolName;
     }
 
-    public BaseState(Player _player, StateMachine _stateMachine, PlayerData _playerData/*, string _animeBoolName */)
+    public BaseState(Player _player, StateMachine _stateMachine, PlayerData _playerData/*, String _animBoolName */)
     {
         player = _player;
         stateMachine = _stateMachine;
@@ -46,7 +48,7 @@ public abstract class BaseState
     {
         Debug.Log("Player has entered a new state!");
         //player.anim.setBool(animBoolName, true);
-        startTime = Time.time;
+        //startTime = Time.time;
     }
 
     public virtual void LogicUpdate()
