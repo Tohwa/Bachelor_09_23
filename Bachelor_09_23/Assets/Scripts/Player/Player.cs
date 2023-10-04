@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private SoundRequestCollection requests;
     [SerializeField]
     private AudioData footSteps;
+    [SerializeField]
+    private Camera mainCamera;
     #endregion
 
     private void Awake()
@@ -52,8 +54,19 @@ public class Player : MonoBehaviour
             {
                 requests.Add(SoundRequest.Request(footSteps));
             }
-        }       
-        Debug.DrawRay(transform.position, Vector3.forward, Color.black);
+        }
+
+        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+
+        if (groundPlane.Raycast(cameraRay, out rayLength))
+        {
+            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.black);
+
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        }
     }
 
     private void FixedUpdate()
@@ -67,19 +80,5 @@ public class Player : MonoBehaviour
         //movement = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movement;
         movement = Vector3.ClampMagnitude(movement, 1) * 3;
         RB.MovePosition(transform.position + transform.TransformDirection(movement));
-        Aim();
-    }
-
-    private void Aim()
-    {
-        var (success, position) = InputHandler.GetMousePosition();
-
-        if (success)
-        {
-            var direction = position - transform.position;
-            direction.y = 0;
-
-            transform.forward = direction;
-        }
     }
 }

@@ -33,9 +33,7 @@ public class PlayerIdleState : Day
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
-
-        
+        base.PhysicsUpdate();       
     }
 
     public override void UpdateState()
