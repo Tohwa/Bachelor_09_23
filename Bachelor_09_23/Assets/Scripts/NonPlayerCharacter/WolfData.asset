@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d0332b79748664b93a9a58e9735dd1, type: 3}
-  m_Name: EnemyData
+  m_Script: {fileID: 11500000, guid: 8b2d10476471bf048ac76f9230ff5c31, type: 3}
+  m_Name: WolfData
   m_EditorClassIdentifier: 

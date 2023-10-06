@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public abstract class BaseState
 {
@@ -12,8 +11,6 @@ public abstract class BaseState
     protected StateMachine stateMachine;
     protected PlayerData playerData;
     protected NPCData npcData;
-
-    protected Vector2 input;
 
     //private float startTime;
 

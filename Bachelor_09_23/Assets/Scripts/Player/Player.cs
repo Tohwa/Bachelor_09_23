@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class Player : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
 
     public Animator Anim { get; private set; }
 
-    public Rigidbody RB { get; private set; }
+    [SerializeField] private Rigidbody rb;
 
     [SerializeField]
     private PlayerData playerData;
@@ -23,8 +24,8 @@ public class Player : MonoBehaviour
     private SoundRequestCollection requests;
     [SerializeField]
     private AudioData footSteps;
-    [SerializeField]
-    private Camera mainCamera;
+
+    public Vector2 input;
     #endregion
 
     private void Awake()
@@ -39,13 +40,15 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        RB = GetComponent<Rigidbody>();
 
         StateMachine.InitPlayerState(IdleState);
     }
 
     private void Update()
     {
+
+        input = InputHandler.MovementInput;
+
         StateMachine.curPlayerState.LogicUpdate();
 
         if (StateMachine.curPlayerState == MoveState)
@@ -54,18 +57,6 @@ public class Player : MonoBehaviour
             {
                 requests.Add(SoundRequest.Request(footSteps));
             }
-        }
-
-        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLength;
-
-        if (groundPlane.Raycast(cameraRay, out rayLength))
-        {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.black);
-
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }
     }
 
@@ -76,9 +67,6 @@ public class Player : MonoBehaviour
 
     public void MovePlayer(float inputX, float inputY)
     {
-        Vector3 movement = new Vector3(inputX, 0f, inputY) * playerData.moveSpeed * Time.deltaTime;
-        //movement = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * movement;
-        movement = Vector3.ClampMagnitude(movement, 1) * 3;
-        RB.MovePosition(transform.position + transform.TransformDirection(movement));
+        transform.Translate(inputX * playerData.moveSpeed *Time.deltaTime, 0, inputY * playerData.moveSpeed * Time.deltaTime);
     }
 }

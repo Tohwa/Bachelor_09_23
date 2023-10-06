@@ -22,7 +22,7 @@ public class PlayerMoveState : BaseState
     {
         base.LogicUpdate();
 
-        if(input.x == 0 && input.y == 0)
+        if(player.input.x == 0 && player.input.y == 0)
         {
             stateMachine.ChangePlayerState(player.IdleState);
         }
@@ -32,7 +32,7 @@ public class PlayerMoveState : BaseState
     {
         base.PhysicsUpdate();
 
-        player.MovePlayer(input.x, input.y);
+        player.MovePlayer(player.input.x, player.input.y);
     }
 
     public override void UpdateState()

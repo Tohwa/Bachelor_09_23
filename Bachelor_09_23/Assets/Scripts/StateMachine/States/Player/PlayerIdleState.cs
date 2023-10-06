@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : Day
+public class PlayerIdleState : BaseState
 {
-
     public PlayerIdleState(Player _player, StateMachine _stateMachine, PlayerData _playerData) : base(_player, _stateMachine, _playerData)
     {
     }
@@ -25,7 +24,7 @@ public class PlayerIdleState : Day
     {
         base.LogicUpdate();
 
-        if(input.x != 0 || input.y != 0)
+        if(player.input.x != 0 || player.input.y != 0)
         {
             stateMachine.ChangePlayerState(player.MoveState);
         }
@@ -33,7 +32,7 @@ public class PlayerIdleState : Day
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();       
+        base.PhysicsUpdate();
     }
 
     public override void UpdateState()
