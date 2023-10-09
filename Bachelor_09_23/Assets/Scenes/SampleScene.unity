@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 444950018}
   - component: {fileID: 444950017}
   - component: {fileID: 444950019}
+  - component: {fileID: 444950020}
   m_Layer: 0
   m_Name: ManagerBody
   m_TagString: Manager
@@ -1348,6 +1349,18 @@ MonoBehaviour:
   maxPoolSize: 0
   poolPrefab: {fileID: 0}
   requests: {fileID: 0}
+--- !u!114 &444950020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444950016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8944d47f0ccbb0542aa29149a238f47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &448007531
 PrefabInstance:
   m_ObjectHideFlags: 0
