@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private string managerTag = "AudioManager";
+    [SerializeField] private string managerTag = "Manager";
 
     private IObjectPool<GameObject> pool;
 
