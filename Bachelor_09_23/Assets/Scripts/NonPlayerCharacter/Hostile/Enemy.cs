@@ -68,28 +68,21 @@ public class Enemy : MonoBehaviour
             {
                 objectTarget = GameObject.FindGameObjectWithTag("Player");
             }
-            else
-            {               
+            else if(gameObject.CompareTag("Wolf") || gameObject.CompareTag("Boar"))
+            {
                 objectTarget = GameObject.FindGameObjectWithTag("Fence");
 
-                if(objectTarget == null)
+                if (objectTarget == null)
                 {
                     objectTarget = GameObject.FindGameObjectWithTag("Sheep");
-                }                
+                }
             }
         }
     }
 
-    public void AttackTarget()
+    public void DestroyTarget()
     {
-        for (int x = 5; x == 0; x--)
-        {
-            Debug.Log("Enemy is attacking its Target!");
-            if(x == 0)
-            {
-                Destroy(objectTarget);
-                Debug.Log("Target has been Destroyed!");
-            }
-        }
+        Destroy(objectTarget);
+        Debug.Log("Target has been Destroyed!");
     }
 }

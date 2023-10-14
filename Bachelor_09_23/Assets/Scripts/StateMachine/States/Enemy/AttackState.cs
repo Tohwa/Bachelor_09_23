@@ -15,7 +15,8 @@ public class AttackState : BaseState
 
         Debug.Log("Enemy has entered is AttackState!");
 
-        enemy.AttackTarget();
+        enemy.DestroyTarget();
+        enemy.objectTarget = null;
     }
 
     public override void ExitState()
@@ -29,7 +30,7 @@ public class AttackState : BaseState
     {
         base.LogicUpdate();
 
-        if (enemy.objectTarget.IsDestroyed())
+        if (enemy.objectTarget == null)
         {
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
