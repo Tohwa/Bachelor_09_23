@@ -11,11 +11,15 @@ public class PlayerMoveState : BaseState
     public override void EnterState()
     {
         base.EnterState();
+
+        Debug.Log("Player has entered is MoveState!");
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        Debug.Log("Player has left its MoveState.");
     }
 
     public override void LogicUpdate()

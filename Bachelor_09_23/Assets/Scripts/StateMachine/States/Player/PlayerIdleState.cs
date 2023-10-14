@@ -12,12 +12,16 @@ public class PlayerIdleState : BaseState
     {
         base.EnterState();
 
+        Debug.Log("Player has entered is IdleState!");
+
         player.MovePlayer(0, 0);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        Debug.Log("Player has left its IdleState.");
     }
 
     public override void LogicUpdate()

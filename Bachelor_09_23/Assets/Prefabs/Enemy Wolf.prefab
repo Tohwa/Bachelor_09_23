@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -6302537479221598130}
   m_Layer: 0
   m_Name: Enemy Wolf
-  m_TagString: Untagged
+  m_TagString: Wolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,4 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4819de4214285409917f63237e6451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectTarget: {fileID: 0}
   enemyData: {fileID: 11400000, guid: e80fa0b537dce2944aea1369ad7167d8, type: 2}

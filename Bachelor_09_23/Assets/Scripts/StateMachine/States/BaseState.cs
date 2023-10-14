@@ -43,7 +43,6 @@ public abstract class BaseState
 
     public virtual void EnterState()
     {
-        Debug.Log("Player has entered a new state!");
         //player.anim.setBool(animBoolName, true);
         //startTime = Time.time;
     }
@@ -65,7 +64,6 @@ public abstract class BaseState
 
     public virtual void ExitState()
     {
-        Debug.Log("Player has left its current state.");
         //player.anim.setBool(animBoolName, false);
     }
 

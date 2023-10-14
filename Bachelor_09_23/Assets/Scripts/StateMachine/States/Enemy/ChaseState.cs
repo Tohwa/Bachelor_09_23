@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
 public class ChaseState : BaseState
@@ -13,26 +14,37 @@ public class ChaseState : BaseState
     {
         base.EnterState();
 
-        enemy.objectTarget = GameObject.FindGameObjectWithTag("Player");
-        enemy.target = enemy.objectTarget.transform;
-
+        Debug.Log("Enemy has entered is ChaseState!");
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        Debug.Log("Enemy has left its ChaseState.");
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        enemy.ChaseTarget();
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        enemy.ChaseTarget(enemy.objectTarget);
+
+        if (!enemy.Agent.pathPending)
+        {
+            if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
+            {
+                if (!enemy.Agent.hasPath || enemy.Agent.velocity.sqrMagnitude == 0f)
+                {
+                    enemy.EnemyStateMachine.ChangeEnemyState(enemy.AttackState);                    
+                }
+            }
+        }
     }
 
     public override void UpdateState()

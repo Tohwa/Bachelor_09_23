@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Manager
+  - Goat
+  - Wolf
+  - Boar
+  - Boss
+  - Fence
+  - Sheep
   layers:
   - Default
   - TransparentFX

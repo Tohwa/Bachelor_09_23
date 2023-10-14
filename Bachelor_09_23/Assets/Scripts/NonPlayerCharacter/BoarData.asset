@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b2d10476471bf048ac76f9230ff5c31, type: 3}
-  m_Name: WolfData
+  m_Name: BoarData
   m_EditorClassIdentifier: 
-  healthPoints: 2
-  attackDelay: 1.5
-  moveSpeed: 5
+  healthPoints: 5
+  attackDelay: 3
+  moveSpeed: 2
