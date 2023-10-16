@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -44,6 +45,10 @@ public class ChaseState : BaseState
                     enemy.EnemyStateMachine.ChangeEnemyState(enemy.AttackState);                    
                 }
             }
+        }
+        else if (enemy.objectTarget == null)
+        {
+            enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
     }
 
