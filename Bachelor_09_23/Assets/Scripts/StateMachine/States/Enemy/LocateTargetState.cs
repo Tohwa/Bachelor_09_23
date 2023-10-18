@@ -12,8 +12,6 @@ public class LocateTargetState : BaseState
     {
         base.EnterState();
 
-        Debug.Log("Enemy has entered is LocateState!");
-
         enemy.FindTarget();
     }
 
@@ -21,7 +19,6 @@ public class LocateTargetState : BaseState
     {
         base.ExitState();
 
-        Debug.Log("Enemy has left its LocateState.");
     }
 
     public override void LogicUpdate()

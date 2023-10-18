@@ -13,17 +13,13 @@ public class AttackState : BaseState
     {
         base.EnterState();
 
-        Debug.Log("Enemy has entered is AttackState!");
-
-        enemy.DestroyTarget();
+        enemy.DisableTarget();
         enemy.objectTarget = null;
     }
 
     public override void ExitState()
     {
         base.ExitState();
-
-        Debug.Log("Enemy has left its AttackState.");
     }
 
     public override void LogicUpdate()

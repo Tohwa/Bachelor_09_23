@@ -14,15 +14,11 @@ public class ChaseState : BaseState
     public override void EnterState()
     {
         base.EnterState();
-
-        Debug.Log("Enemy has entered is ChaseState!");
     }
 
     public override void ExitState()
     {
         base.ExitState();
-
-        Debug.Log("Enemy has left its ChaseState.");
     }
 
     public override void LogicUpdate()
