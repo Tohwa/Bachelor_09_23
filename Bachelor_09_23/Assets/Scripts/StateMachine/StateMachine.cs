@@ -10,6 +10,7 @@ public class StateMachine
     public BaseState curPlayerState;
     public BaseState curEnemyState;
     public BaseState curAnimalState;
+    public BaseState curGameState;
 
     public void InitPlayerState(BaseState _startState)
     {
@@ -27,6 +28,12 @@ public class StateMachine
     {
         curAnimalState = _startState;
         curAnimalState.EnterState();
+    }
+
+    public void InitGameState(BaseState _startState)
+    {
+        curGameState = _startState;
+        curGameState.EnterState();
     }
 
     public void ChangePlayerState(BaseState _newState)
@@ -48,5 +55,12 @@ public class StateMachine
         curAnimalState.ExitState();
         curAnimalState = _newState;
         curAnimalState.EnterState();
+    }
+
+    public void ChangeGameState(BaseState _newState)
+    {
+        curGameState.ExitState();
+        curGameState = _newState;
+        curGameState.EnterState();
     }
 }

@@ -41,6 +41,11 @@ public abstract class BaseState
         //animBoolName = _animBoolName;
     }
 
+    public BaseState(StateMachine _stateMachine)
+    {
+        stateMachine = _stateMachine;
+    }
+
     public virtual void EnterState()
     {
         //player.anim.setBool(animBoolName, true);

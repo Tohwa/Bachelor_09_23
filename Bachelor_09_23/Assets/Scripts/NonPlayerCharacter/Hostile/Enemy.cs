@@ -13,22 +13,16 @@ public class Enemy : MonoBehaviour
 
     public NavMeshAgent Agent { get; private set; }
     public Rigidbody RB { get; private set; }
-
     public Animator Anim { get; private set; }
-
-    public ChaseState ChaseState { get; private set; }
-
-    public AttackState AttackState { get; private set; }
-
-    public LocateTargetState LocateState { get; private set; }
 
     public StateMachine EnemyStateMachine { get; private set; }
 
+    public ChaseState ChaseState { get; private set; }
+    public AttackState AttackState { get; private set; }
+    public LocateTargetState LocateState { get; private set; }
+
     [SerializeField]
     private NPCData enemyData;
-
-
-
 
     private void Awake()
     {

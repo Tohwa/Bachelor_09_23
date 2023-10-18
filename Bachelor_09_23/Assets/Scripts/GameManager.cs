@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public StateMachine GameState { get; private set; }
+
+    public PreparationState PrepState { get; private set; }
+    public WaveState WaveState { get; private set; }
+
     [SerializeField]
     public List<GameObject> fenceTargets = new();
     [SerializeField]
@@ -24,6 +29,13 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
+
+        GameState = new StateMachine();
+
+        PrepState = new PreparationState(GameState);
+        WaveState = new WaveState(GameState);
+
+        GameState.InitGameState(PrepState);
 
         foundFences = GameObject.FindGameObjectsWithTag("Fence");
 
