@@ -22,18 +22,12 @@ public class Enemy : MonoBehaviour
 
     public LocateTargetState LocateState { get; private set; }
 
-
     public StateMachine EnemyStateMachine { get; private set; }
 
     [SerializeField]
     private NPCData enemyData;
-    [SerializeField]
-    public List<GameObject> potFenceTargets = new();
-    [SerializeField]
-    public List<GameObject> potSheepTargets = new();
 
-    private Array foundFences;
-    private Array foundSheep;
+
 
 
     private void Awake()
@@ -50,20 +44,6 @@ public class Enemy : MonoBehaviour
         RB = GetComponent<Rigidbody>();
         Agent = GetComponent<NavMeshAgent>();
         Anim = GetComponent<Animator>();
-
-        foundFences = GameObject.FindGameObjectsWithTag("Fence");
-
-        foreach (GameObject obj in foundFences)
-        {
-            potFenceTargets.Add(obj);
-        }
-
-        foundSheep = GameObject.FindGameObjectsWithTag("Sheep");
-
-        foreach (GameObject obj in foundSheep)
-        {
-            potSheepTargets.Add(obj);
-        }
 
         EnemyStateMachine.InitEnemyState(LocateState);
     }
@@ -94,12 +74,17 @@ public class Enemy : MonoBehaviour
             }
             else if (gameObject.CompareTag("Wolf") || gameObject.CompareTag("Boar"))
             {
-                FindClosestFence();
-
-                if (potFenceTargets.Count == 0 && potSheepTargets.Count != 0)
+                if (GameManager.Instance.fenceTargets.Count != 0)
                 {
-                    FindClosestSheep();
+                    FindClosestFence();
                 }
+                else
+                {
+                    if (GameManager.Instance.sheepTargets.Count != 0)
+                    {
+                        FindClosestSheep();
+                    }
+                }                
             }
         }
     }
@@ -109,24 +94,32 @@ public class Enemy : MonoBehaviour
         float firstDistance;
         float secDistance;
 
-        firstDistance = CalcTargetDistance(gameObject.transform.position, potFenceTargets.First().transform.position);
-
-        objectTarget = potFenceTargets.First();
-
-        for (int x = 0; x < potFenceTargets.Count; x++)
+        if(GameManager.Instance.fenceTargets.Count != 0)
         {
-            secDistance = CalcTargetDistance(gameObject.transform.position, potFenceTargets[x].transform.position);
+            firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.fenceTargets.First().transform.position);
 
-            if (firstDistance > secDistance)
+            objectTarget = GameManager.Instance.fenceTargets.First();
+
+            for (int x = 0; x < GameManager.Instance.fenceTargets.Count; x++)
             {
-                objectTarget = potFenceTargets[x];
-                firstDistance = secDistance;
+                secDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.fenceTargets[x].transform.position);
+
+                if (firstDistance > secDistance)
+                {
+                    objectTarget = GameManager.Instance.fenceTargets[x];
+                    firstDistance = secDistance;
+                }
+
             }
 
+            GameManager.Instance.fenceTargets.Remove(objectTarget);
+            Debug.Log($"{objectTarget} has been removed from the Fence List");            
         }
-
-        potFenceTargets.Remove(objectTarget);
-        Debug.Log($"{objectTarget} has been removed from the Fence List");
+        else
+        {
+            Debug.Log("no more fences available");
+            return;
+        }
     }
 
     private void FindClosestSheep()
@@ -134,24 +127,32 @@ public class Enemy : MonoBehaviour
         float firstDistance;
         float secDistance;
 
-        firstDistance = CalcTargetDistance(gameObject.transform.position, potSheepTargets.First().transform.position);
-
-        objectTarget = potSheepTargets.First();
-
-        for (int x = 0; x < potSheepTargets.Count; x++)
+        if(GameManager.Instance.sheepTargets.Count != 0)
         {
-            secDistance = CalcTargetDistance(gameObject.transform.position, potSheepTargets[x].transform.position);
+            firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.sheepTargets.First().transform.position);
 
-            if (firstDistance > secDistance)
+            objectTarget = GameManager.Instance.sheepTargets.First();
+
+            for (int x = 0; x < GameManager.Instance.sheepTargets.Count; x++)
             {
-                objectTarget = potSheepTargets[x];
-                firstDistance = secDistance;
+                secDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.sheepTargets[x].transform.position);
+
+                if (firstDistance > secDistance)
+                {
+                    objectTarget = GameManager.Instance.sheepTargets[x];
+                    firstDistance = secDistance;
+                }
+
             }
 
+            GameManager.Instance.sheepTargets.Remove(objectTarget);
+            Debug.Log($"{objectTarget} has been removed from the Sheep List");
         }
-
-        potSheepTargets.Remove(objectTarget);
-        Debug.Log($"{objectTarget} has been removed from the Sheep List");
+        else
+        {
+            Debug.Log("no more sheep available");
+            return;
+        }
     }
 
     private float CalcTargetDistance(Vector3 firstTransform, Vector3 secTransform)
