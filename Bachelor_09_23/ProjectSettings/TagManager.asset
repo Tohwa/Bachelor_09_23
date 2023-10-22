@@ -11,6 +11,7 @@ TagManager:
   - Boss
   - Fence
   - Sheep
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 

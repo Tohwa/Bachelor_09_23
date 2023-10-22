@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2169469600259865274}
   - component: {fileID: 4931527433840126100}
   - component: {fileID: 5836456944805257814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Goat
   m_TagString: Goat
   m_Icon: {fileID: 0}

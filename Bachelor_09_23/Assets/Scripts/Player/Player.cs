@@ -3,27 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
     #region Fields
     public StateMachine StateMachine { get; private set; }
-
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
-
     public PlayerInputHandler InputHandler { get; private set; }
-
     public Animator Anim { get; private set; }
 
-    [SerializeField] private Rigidbody rb;
+    [SerializeField]
+    private GameObject playerBody;
 
     [SerializeField]
-    private PlayerData playerData;
+    private Rigidbody rb;
+
     [SerializeField]
     private SoundRequestCollection requests;
     [SerializeField]
     private AudioData footSteps;
+    [SerializeField]
+    private PlayerData playerData;
+    [SerializeField]
+    private Shooting shootScript;
+
+    [SerializeField]
+    private float fireDelay;
+
+    private float lastFireTime;
+    public bool fire = false;
 
     public Vector2 input;
     #endregion
@@ -58,6 +68,12 @@ public class Player : MonoBehaviour
                 requests.Add(SoundRequest.Request(footSteps));
             }
         }
+
+        if (fire && shootScript.canShoot)
+        {
+            shootScript.Shoot();
+            StartCoroutine(shootScript.ShotDelay());
+        }
     }
 
     private void FixedUpdate()
@@ -67,6 +83,6 @@ public class Player : MonoBehaviour
 
     public void MovePlayer(float inputX, float inputY)
     {
-        transform.Translate(inputX * playerData.moveSpeed *Time.deltaTime, 0, inputY * playerData.moveSpeed * Time.deltaTime);
+        transform.Translate(inputX * playerData.moveSpeed * Time.deltaTime, 0, inputY * playerData.moveSpeed * Time.deltaTime);
     }
 }
