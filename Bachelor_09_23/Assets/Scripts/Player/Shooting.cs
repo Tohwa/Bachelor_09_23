@@ -7,6 +7,7 @@ public class Shooting : MonoBehaviour
     public Transform firePoint; // Abschussposition
     public GameObject bulletPrefab; // Kugel
     public float bulletForce = 10f; // Fluggeschwindigkeit
+    public float shootDelay;
     public bool canShoot = true;
 
     public void Shoot()
@@ -21,7 +22,7 @@ public class Shooting : MonoBehaviour
     public IEnumerator ShotDelay()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(shootDelay);
         canShoot = true;
     }
 
