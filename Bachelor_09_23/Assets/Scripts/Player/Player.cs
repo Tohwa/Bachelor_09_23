@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioData footSteps;
     [SerializeField]
-    private PlayerData playerData;
+    public PlayerData playerData;
     [SerializeField]
     private Shooting shootScript;
 

@@ -6,6 +6,8 @@ using UnityEngine;
 public class NPCData : ScriptableObject
 {
     public float healthPoints;
+    public float attackDamage;
     public float attackDelay;
     public float moveSpeed;
+    public float stopDistance;
 }

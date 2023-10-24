@@ -12,9 +12,6 @@ public class AttackState : BaseState
     public override void EnterState()
     {
         base.EnterState();
-
-        enemy.DisableTarget();
-        enemy.objectTarget = null;
     }
 
     public override void ExitState()
@@ -26,8 +23,16 @@ public class AttackState : BaseState
     {
         base.LogicUpdate();
 
-        if (enemy.objectTarget == null)
+        enemy.AttackTarget();
+
+        if (enemy.fenceData.fenceDurability <= 0)
         {
+            enemy.objectTarget = null;
+            enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+        }
+        else if (enemy.sheepData.healthPoints <= 0)
+        {
+            enemy.objectTarget = null;
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
     }

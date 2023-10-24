@@ -23,6 +23,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private NPCData enemyData;
+    [SerializeField]
+    public NPCData sheepData;
+    [SerializeField]
+    public Fence fenceData;
+    [SerializeField]
+    public PlayerData playerData;
+
+    public float targetHealth;
+
+    private bool canAttack;
 
     private void Awake()
     {
@@ -40,6 +50,9 @@ public class Enemy : MonoBehaviour
         Anim = GetComponent<Animator>();
 
         EnemyStateMachine.InitEnemyState(LocateState);
+
+        Agent.speed = enemyData.moveSpeed;
+        Agent.stoppingDistance = enemyData.stopDistance;
     }
 
     private void Update()
@@ -157,5 +170,35 @@ public class Enemy : MonoBehaviour
     public void DisableTarget()
     {
         objectTarget.SetActive(false);
+    }
+
+    public void AttackTarget()
+    {
+        if(canAttack)
+        {
+            if (objectTarget.CompareTag("Fence"))
+            {   
+                fenceData.fenceDurability -= enemyData.attackDamage;
+                StartCoroutine(AttackDelay());
+            }
+            else if (objectTarget.CompareTag("Sheep"))
+            {
+                sheepData.healthPoints -= enemyData.attackDamage;
+                StartCoroutine(AttackDelay());
+            }
+            else if (objectTarget.CompareTag("Player"))
+            {
+                playerData.healthPoints -= enemyData.attackDamage;
+                StartCoroutine(AttackDelay());
+            }
+            
+        }
+    }
+
+    public IEnumerator AttackDelay()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(enemyData.attackDelay);
+        canAttack = true;
     }
 }
