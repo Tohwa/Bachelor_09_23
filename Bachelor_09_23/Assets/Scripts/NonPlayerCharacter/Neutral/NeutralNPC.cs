@@ -24,6 +24,8 @@ public class NeutralNPC : MonoBehaviour
 
     public GameObject aggroTrigger;
 
+    public float healthPoints;
+
     private void Awake()
     {
         SheepStateMachine = new StateMachine();
@@ -39,6 +41,8 @@ public class NeutralNPC : MonoBehaviour
         RB = GetComponent<Rigidbody>();
         Agent = GetComponent<NavMeshAgent>();
         Anim = GetComponent<Animator>();
+
+        healthPoints = sheepData.healthPoints;
 
         if(GameManager.Instance.fenceTargets.Count != 0)
         {

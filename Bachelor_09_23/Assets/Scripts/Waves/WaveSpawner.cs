@@ -19,6 +19,7 @@ public class WaveSettings
     #region Fields
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject spawnLocation;
+    [SerializeField] private NPCData enemyData;
     //[SerializeField] private float spawnDelay;
     #endregion
 }

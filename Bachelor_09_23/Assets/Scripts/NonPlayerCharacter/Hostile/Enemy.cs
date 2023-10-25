@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
@@ -26,13 +27,14 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public NPCData sheepData;
     [SerializeField]
-    public Fence fenceData;
+    public Fence fence;
     [SerializeField]
     public PlayerData playerData;
 
-    public float targetHealth;
+    public bool canAttack = true;
 
-    private bool canAttack;
+    private float attackDamage;
+    private float attackDelay;
 
     private void Awake()
     {
@@ -53,6 +55,9 @@ public class Enemy : MonoBehaviour
 
         Agent.speed = enemyData.moveSpeed;
         Agent.stoppingDistance = enemyData.stopDistance;
+
+        attackDamage = enemyData.attackDamage;
+        attackDelay = enemyData.attackDelay;
     }
 
     private void Update()
@@ -119,7 +124,7 @@ public class Enemy : MonoBehaviour
 
             }
 
-            GameManager.Instance.fenceTargets.Remove(objectTarget);
+            GameManager.Instance.fenceTargets.Clear();
             Debug.Log($"{objectTarget} has been removed from the Fence List");            
         }
         else
@@ -152,7 +157,7 @@ public class Enemy : MonoBehaviour
 
             }
 
-            GameManager.Instance.sheepTargets.Remove(objectTarget);
+            GameManager.Instance.sheepTargets.Clear();
             Debug.Log($"{objectTarget} has been removed from the Sheep List");
         }
         else
@@ -171,34 +176,23 @@ public class Enemy : MonoBehaviour
     {
         objectTarget.SetActive(false);
     }
-
-    public void AttackTarget()
-    {
-        if(canAttack)
-        {
-            if (objectTarget.CompareTag("Fence"))
-            {   
-                fenceData.fenceDurability -= enemyData.attackDamage;
-                StartCoroutine(AttackDelay());
-            }
-            else if (objectTarget.CompareTag("Sheep"))
-            {
-                sheepData.healthPoints -= enemyData.attackDamage;
-                StartCoroutine(AttackDelay());
-            }
-            else if (objectTarget.CompareTag("Player"))
-            {
-                playerData.healthPoints -= enemyData.attackDamage;
-                StartCoroutine(AttackDelay());
-            }
-            
-        }
-    }
-
     public IEnumerator AttackDelay()
     {
+        if (objectTarget.CompareTag("Fence"))
+        {
+            fence.durability -= attackDamage;
+        }
+        else if (objectTarget.CompareTag("Sheep"))
+        {
+            sheepData.healthPoints -= attackDamage;
+        }
+        else if (objectTarget.CompareTag("Player"))
+        {
+            playerData.healthPoints -= attackDamage;
+        }
+
         canAttack = false;
-        yield return new WaitForSeconds(enemyData.attackDelay);
+        yield return new WaitForSeconds(attackDelay);
         canAttack = true;
     }
 }

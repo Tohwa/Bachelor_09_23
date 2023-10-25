@@ -3,7 +3,12 @@ guid: 6c4819de4214285409917f63237e6451
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - objectTarget: {instanceID: 0}
+  - enemyData: {instanceID: 0}
+  - sheepData: {fileID: 11400000, guid: 3b887cd5f19e3134c95def7a7ffe043d, type: 2}
+  - fenceData: {fileID: 11400000, guid: a324d8f6908b18644b45e797943223b6, type: 2}
+  - playerData: {fileID: 11400000, guid: dbe86fde70fad29489870d1c41a85d25, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

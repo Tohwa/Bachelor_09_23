@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Fence : MonoBehaviour
 {
-    public float fenceDurability;
+    [SerializeField]
+    private ObjectData fenceData;
+
+    public float durability;
+
+    private void Start()
+    {
+        durability = fenceData.healthPoints;
+    }
 
     public void Update()
     {
-        if( fenceDurability <= 0)
+        if(durability <= 0)
         {
-            fenceDurability = 0;
-            GameManager.Instance.fenceTargets.Clear();
+            durability = 0;
             gameObject.SetActive(false);
         }
     }

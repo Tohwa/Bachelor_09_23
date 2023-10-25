@@ -12,6 +12,8 @@ public class AttackState : BaseState
     public override void EnterState()
     {
         base.EnterState();
+
+        Debug.Log("entered AttackState");
     }
 
     public override void ExitState()
@@ -23,9 +25,13 @@ public class AttackState : BaseState
     {
         base.LogicUpdate();
 
-        enemy.AttackTarget();
+        if (enemy.canAttack)
+        {
+            Debug.Log("Attacked");
+            enemy.StartCoroutine(enemy.AttackDelay());
+        }
 
-        if (enemy.fenceData.fenceDurability <= 0)
+        if (enemy.fence.durability <= 0)
         {
             enemy.objectTarget = null;
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);

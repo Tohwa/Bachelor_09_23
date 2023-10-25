@@ -639,9 +639,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
         type: 3}
-      propertyPath: fenceData
+      propertyPath: fence
       value: 
       objectReference: {fileID: 1189180039}
+    - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
+        type: 3}
+      propertyPath: fenceData
+      value: 
+      objectReference: {fileID: 11400000, guid: a324d8f6908b18644b45e797943223b6,
+        type: 2}
+    - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
+        type: 3}
+      propertyPath: sheepData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b887cd5f19e3134c95def7a7ffe043d,
+        type: 2}
+    - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
+        type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: dbe86fde70fad29489870d1c41a85d25,
+        type: 2}
     - target: {fileID: 1602085436001203062, guid: 8d74ee688c79ac94fa44927ac75f62bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -700,7 +718,7 @@ PrefabInstance:
     - target: {fileID: 5836456944805257814, guid: 8d74ee688c79ac94fa44927ac75f62bd,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1410,10 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393a36e777026284589996d4f5368918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - waveSettings:
-    - enemy: {fileID: 0}
-      spawnLocation: {fileID: 0}
+  waves: []
 --- !u!4 &444950018
 Transform:
   m_ObjectHideFlags: 0
@@ -2926,7 +2941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8830a49b2916b784b84e273a677cdef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fenceDurability: 10
+  fenceData: {fileID: 11400000, guid: a324d8f6908b18644b45e797943223b6, type: 2}
+  durability: 0
 --- !u!1 &1191430783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4209,9 +4225,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5876589478242438097, guid: 38dad9062fd0a91489d528daa0c49754,
         type: 3}
+      propertyPath: fence
+      value: 
+      objectReference: {fileID: 1189180039}
+    - target: {fileID: -5876589478242438097, guid: 38dad9062fd0a91489d528daa0c49754,
+        type: 3}
       propertyPath: enemyData
       value: 
       objectReference: {fileID: 11400000, guid: 4eb3829edf5b9e94dbfec416d1f6bfeb,
+        type: 2}
+    - target: {fileID: -5876589478242438097, guid: 38dad9062fd0a91489d528daa0c49754,
+        type: 3}
+      propertyPath: sheepData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b887cd5f19e3134c95def7a7ffe043d,
+        type: 2}
+    - target: {fileID: -5876589478242438097, guid: 38dad9062fd0a91489d528daa0c49754,
+        type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: dbe86fde70fad29489870d1c41a85d25,
         type: 2}
     - target: {fileID: 1602085436001203062, guid: 38dad9062fd0a91489d528daa0c49754,
         type: 3}
