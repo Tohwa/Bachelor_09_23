@@ -30,7 +30,7 @@ public class ChaseState : BaseState
     {
         base.PhysicsUpdate();
 
-        enemy.ChaseTarget(enemy.objectTarget);
+        enemy.ChaseTarget(enemy.activeTarget);
 
         if (!enemy.Agent.pathPending)
         {
@@ -38,11 +38,15 @@ public class ChaseState : BaseState
             {
                 if (!enemy.Agent.hasPath || enemy.Agent.velocity.sqrMagnitude == 0f)
                 {
-                    enemy.EnemyStateMachine.ChangeEnemyState(enemy.AttackState);                    
+                    enemy.EnemyStateMachine.ChangeEnemyState(enemy.AttackState);
                 }
             }
         }
-        else if (enemy.objectTarget == null)
+        else if (enemy.activeTarget == null)
+        {
+            enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+        }
+        else if (enemy.prevTarget != null && !enemy.activeTarget.activeSelf)
         {
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }

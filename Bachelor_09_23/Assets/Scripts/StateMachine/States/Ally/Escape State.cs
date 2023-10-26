@@ -24,10 +24,19 @@ public class EscapeState : BaseState
     {
         base.LogicUpdate();
 
-        if(GameManager.Instance.GameState.curGameState == GameManager.Instance.PrepState)
+        animal.timer += Time.deltaTime;
+
+        if (animal.timer >= animal.wanderTimer)
         {
-            animal.SheepStateMachine.ChangeNPCState(animal.ReturnState);
+            Vector3 newPos = animal.RandomNavSphere(animal.transform.position, animal.wanderRadius, 3);
+            animal.Agent.SetDestination(newPos);
+            animal.timer = 0;
         }
+
+        //if (GameManager.Instance.GameState.curGameState == GameManager.Instance.PrepState)
+        //{
+        //    animal.SheepStateMachine.ChangeNPCState(animal.ReturnState);
+        //}
     }
 
     public override void PhysicsUpdate()

@@ -641,19 +641,17 @@ PrefabInstance:
         type: 3}
       propertyPath: fence
       value: 
-      objectReference: {fileID: 1189180039}
+      objectReference: {fileID: 1189180037}
     - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
         type: 3}
       propertyPath: fenceData
       value: 
-      objectReference: {fileID: 11400000, guid: a324d8f6908b18644b45e797943223b6,
-        type: 2}
+      objectReference: {fileID: 1189180039}
     - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
         type: 3}
       propertyPath: sheepData
       value: 
-      objectReference: {fileID: 11400000, guid: 3b887cd5f19e3134c95def7a7ffe043d,
-        type: 2}
+      objectReference: {fileID: 520414420}
     - target: {fileID: -6302537479221598130, guid: 8d74ee688c79ac94fa44927ac75f62bd,
         type: 3}
       propertyPath: playerData
@@ -1581,6 +1579,34 @@ MonoBehaviour:
   sheepData: {fileID: 11400000, guid: 3b887cd5f19e3134c95def7a7ffe043d, type: 2}
   trigger: {fileID: 307808178}
   aggroTrigger: {fileID: 307808176}
+  fence: {fileID: 1189180037}
+  healthPoints: 0
+  wanderRadius: 30
+  wanderTimer: 2
+  target: {fileID: 0}
+  timer: 0
+--- !u!195 &520414426
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520414414}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &526461506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7795499744200906004, guid: cc037f394c4a9ef4eb0cde55a1e70cd6,
@@ -2263,6 +2289,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 846125654718653165, guid: 1812902bc32a01140a22f9be7ee403f1,
+        type: 3}
+      propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1821890575510129664, guid: 1812902bc32a01140a22f9be7ee403f1,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -2336,6 +2367,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 520414420}
+    - targetCorrespondingSourceObject: {fileID: 2880566580481540918, guid: 1812902bc32a01140a22f9be7ee403f1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 520414426}
   m_SourcePrefab: {fileID: 100100000, guid: 1812902bc32a01140a22f9be7ee403f1, type: 3}
 --- !u!1001 &897650652
 PrefabInstance:
@@ -4227,7 +4262,7 @@ PrefabInstance:
         type: 3}
       propertyPath: fence
       value: 
-      objectReference: {fileID: 1189180039}
+      objectReference: {fileID: 0}
     - target: {fileID: -5876589478242438097, guid: 38dad9062fd0a91489d528daa0c49754,
         type: 3}
       propertyPath: enemyData
@@ -4238,8 +4273,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sheepData
       value: 
-      objectReference: {fileID: 11400000, guid: 3b887cd5f19e3134c95def7a7ffe043d,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: -5876589478242438097, guid: 38dad9062fd0a91489d528daa0c49754,
         type: 3}
       propertyPath: playerData

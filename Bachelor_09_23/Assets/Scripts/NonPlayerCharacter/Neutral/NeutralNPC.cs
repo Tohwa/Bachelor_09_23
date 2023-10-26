@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.UI.Image;
 
 public class NeutralNPC : MonoBehaviour
 {
@@ -23,8 +24,14 @@ public class NeutralNPC : MonoBehaviour
     public AggroTrigger trigger;
 
     public GameObject aggroTrigger;
+    public GameObject fence;
 
     public float healthPoints;
+
+    public float wanderRadius;
+    public float wanderTimer;
+    public Transform target;
+    public float timer;
 
     private void Awake()
     {
@@ -43,8 +50,10 @@ public class NeutralNPC : MonoBehaviour
         Anim = GetComponent<Animator>();
 
         healthPoints = sheepData.healthPoints;
+        timer = wanderTimer;
+        Agent.speed = sheepData.moveSpeed;
 
-        if(GameManager.Instance.fenceTargets.Count != 0)
+        if (GameManager.Instance.fenceTargets.Count != 0)
         {
             SheepStateMachine.InitNPCState(CozyState);
         }
@@ -63,4 +72,18 @@ public class NeutralNPC : MonoBehaviour
     {
         SheepStateMachine.curAnimalState.PhysicsUpdate();
     }
+
+    public Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+
+        randDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
+        return navHit.position;
+    }
+
 }

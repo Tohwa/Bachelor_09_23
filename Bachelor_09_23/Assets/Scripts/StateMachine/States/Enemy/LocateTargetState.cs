@@ -25,7 +25,7 @@ public class LocateTargetState : BaseState
     {
         base.LogicUpdate();
 
-        if (enemy.objectTarget != null)
+        if (enemy.activeTarget != null)
         {
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseState);
         }

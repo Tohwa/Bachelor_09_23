@@ -25,7 +25,7 @@ public class CozyState : BaseState
     {
         base.LogicUpdate();
 
-        if(GameManager.Instance.fenceTargets.Count == 0)
+        if(!animal.fence.activeSelf)
         {
             animal.SheepStateMachine.ChangeNPCState(animal.AlarmedState);
         }

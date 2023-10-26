@@ -10,7 +10,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject objectTarget;
+    public GameObject activeTarget;
+    public GameObject prevTarget;
 
     public NavMeshAgent Agent { get; private set; }
     public Rigidbody RB { get; private set; }
@@ -25,11 +26,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private NPCData enemyData;
     [SerializeField]
-    public NPCData sheepData;
+    public NeutralNPC sheepData;
     [SerializeField]
-    public Fence fence;
-    [SerializeField]
-    public PlayerData playerData;
+    public Fence fenceData;
+    //[SerializeField]
+    //public Player playerData;
+
+    public GameObject fence;
 
     public bool canAttack = true;
 
@@ -78,24 +81,21 @@ public class Enemy : MonoBehaviour
 
     public void FindTarget()
     {
-        if (objectTarget == null)
+        if (activeTarget == null)
         {
             if (gameObject.CompareTag("Goat"))
             {
-                objectTarget = GameObject.FindGameObjectWithTag("Player");
+                activeTarget = GameObject.FindGameObjectWithTag("Player");
             }
-            else if (gameObject.CompareTag("Wolf") || gameObject.CompareTag("Boar"))
+            else if (gameObject.CompareTag("Boar") || gameObject.CompareTag("Wolf"))
             {
-                if (GameManager.Instance.fenceTargets.Count != 0)
+                if (prevTarget == null)
                 {
                     FindClosestFence();
                 }
-                else
+                else if (!fence.activeSelf)
                 {
-                    if (GameManager.Instance.sheepTargets.Count != 0)
-                    {
-                        FindClosestSheep();
-                    }
+                    FindClosestSheep();
                 }                
             }
         }
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         {
             firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.fenceTargets.First().transform.position);
 
-            objectTarget = GameManager.Instance.fenceTargets.First();
+            activeTarget = GameManager.Instance.fenceTargets.First();
 
             for (int x = 0; x < GameManager.Instance.fenceTargets.Count; x++)
             {
@@ -118,14 +118,15 @@ public class Enemy : MonoBehaviour
 
                 if (firstDistance > secDistance)
                 {
-                    objectTarget = GameManager.Instance.fenceTargets[x];
+                    prevTarget = GameManager.Instance.fenceTargets[x];
+                    activeTarget = GameManager.Instance.fenceTargets[x];
                     firstDistance = secDistance;
                 }
 
             }
 
-            GameManager.Instance.fenceTargets.Clear();
-            Debug.Log($"{objectTarget} has been removed from the Fence List");            
+            //GameManager.Instance.fenceTargets.Remove(objectTarget);
+            //GameManager.Instance.sheepTargets.Clear();
         }
         else
         {
@@ -143,7 +144,7 @@ public class Enemy : MonoBehaviour
         {
             firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.sheepTargets.First().transform.position);
 
-            objectTarget = GameManager.Instance.sheepTargets.First();
+            activeTarget = GameManager.Instance.sheepTargets.First();
 
             for (int x = 0; x < GameManager.Instance.sheepTargets.Count; x++)
             {
@@ -151,14 +152,14 @@ public class Enemy : MonoBehaviour
 
                 if (firstDistance > secDistance)
                 {
-                    objectTarget = GameManager.Instance.sheepTargets[x];
+                    activeTarget = GameManager.Instance.sheepTargets[x];
                     firstDistance = secDistance;
                 }
 
             }
 
-            GameManager.Instance.sheepTargets.Clear();
-            Debug.Log($"{objectTarget} has been removed from the Sheep List");
+            //GameManager.Instance.sheepTargets.Remove(objectTarget);
+            //GameManager.Instance.sheepTargets.Clear();
         }
         else
         {
@@ -174,22 +175,22 @@ public class Enemy : MonoBehaviour
 
     public void DisableTarget()
     {
-        objectTarget.SetActive(false);
+        activeTarget.SetActive(false);
     }
     public IEnumerator AttackDelay()
     {
-        if (objectTarget.CompareTag("Fence"))
+        if (activeTarget.CompareTag("Fence"))
         {
-            fence.durability -= attackDamage;
+            fenceData.durability -= attackDamage;
         }
-        else if (objectTarget.CompareTag("Sheep"))
+        else if (activeTarget.CompareTag("Sheep"))
         {
             sheepData.healthPoints -= attackDamage;
         }
-        else if (objectTarget.CompareTag("Player"))
-        {
-            playerData.healthPoints -= attackDamage;
-        }
+        //else if (activeTarget.CompareTag("Player"))
+        //{
+        //    playerData.healthPoints -= attackDamage;
+        //}
 
         canAttack = false;
         yield return new WaitForSeconds(attackDelay);

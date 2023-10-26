@@ -15,5 +15,5 @@ MonoBehaviour:
   healthPoints: 5
   attackDamage: 0
   attackDelay: 3
-  moveSpeed: 2
+  moveSpeed: 4
   stopDistance: 2

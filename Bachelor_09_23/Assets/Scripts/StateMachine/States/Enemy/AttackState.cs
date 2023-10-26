@@ -30,15 +30,16 @@ public class AttackState : BaseState
             Debug.Log("Attacked");
             enemy.StartCoroutine(enemy.AttackDelay());
         }
-
-        if (enemy.fence.durability <= 0)
+        else if (enemy.fenceData.durability <= 0)
         {
-            enemy.objectTarget = null;
+            enemy.activeTarget = null;
+            enemy.canAttack = true;
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
         else if (enemy.sheepData.healthPoints <= 0)
         {
-            enemy.objectTarget = null;
+            enemy.activeTarget = null;
+            enemy.canAttack = true;
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
     }
