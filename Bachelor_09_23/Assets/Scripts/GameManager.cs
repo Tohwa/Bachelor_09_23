@@ -51,4 +51,9 @@ public class GameManager : MonoBehaviour
             sheepTargets.Add(obj);
         }
     }
+
+    private void Update()
+    {
+        
+    }
 }

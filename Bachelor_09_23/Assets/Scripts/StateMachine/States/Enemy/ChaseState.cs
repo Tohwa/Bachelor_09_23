@@ -13,25 +13,14 @@ public class ChaseState : BaseState
 
     public override void EnterState()
     {
-        base.EnterState();
     }
 
     public override void ExitState()
     {
-        base.ExitState();
     }
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-
-        enemy.ChaseTarget(enemy.activeTarget);
-
         if (!enemy.Agent.pathPending)
         {
             if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
@@ -46,14 +35,14 @@ public class ChaseState : BaseState
         {
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
-        else if (enemy.prevTarget != null && !enemy.activeTarget.activeSelf)
-        {
-            enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
-        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        enemy.ChaseTarget(enemy.activeTarget);        
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
     }
 }

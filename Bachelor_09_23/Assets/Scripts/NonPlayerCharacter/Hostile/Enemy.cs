@@ -20,14 +20,13 @@ public class Enemy : MonoBehaviour
     public StateMachine EnemyStateMachine { get; private set; }
 
     public ChaseState ChaseState { get; private set; }
+    public ChaseAttackState ChaseAttackState { get; private set; }
     public AttackState AttackState { get; private set; }
     public LocateTargetState LocateState { get; private set; }
 
     [SerializeField]
     private NPCData enemyData;
-    [SerializeField]
     public NeutralNPC sheepData;
-    [SerializeField]
     public Fence fenceData;
     //[SerializeField]
     //public Player playerData;
@@ -43,9 +42,10 @@ public class Enemy : MonoBehaviour
     {
         EnemyStateMachine = new StateMachine();
 
-        ChaseState = new ChaseState(this, EnemyStateMachine, enemyData);
-        AttackState = new AttackState(this, EnemyStateMachine, enemyData);
         LocateState = new LocateTargetState(this, EnemyStateMachine, enemyData);
+        ChaseState = new ChaseState(this, EnemyStateMachine, enemyData);
+        ChaseAttackState = new ChaseAttackState(this, EnemyStateMachine, enemyData);
+        AttackState = new AttackState(this, EnemyStateMachine, enemyData);
     }
 
     private void Start()
@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
         EnemyStateMachine.InitEnemyState(LocateState);
 
         Agent.speed = enemyData.moveSpeed;
-        Agent.stoppingDistance = enemyData.stopDistance;
 
         attackDamage = enemyData.attackDamage;
         attackDelay = enemyData.attackDelay;
@@ -93,10 +92,14 @@ public class Enemy : MonoBehaviour
                 {
                     FindClosestFence();
                 }
-                else if (!fence.activeSelf)
+                else if (prevTarget.CompareTag("Fence"))
                 {
-                    FindClosestSheep();
-                }                
+                    if (!fence.activeSelf)
+                    {
+                        FindClosestSheep();
+                    }
+                }
+                
             }
         }
     }
@@ -106,7 +109,7 @@ public class Enemy : MonoBehaviour
         float firstDistance;
         float secDistance;
 
-        if(GameManager.Instance.fenceTargets.Count != 0)
+        if (GameManager.Instance.fenceTargets.Count != 0)
         {
             firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.fenceTargets.First().transform.position);
 
@@ -125,6 +128,12 @@ public class Enemy : MonoBehaviour
 
             }
 
+            Agent.stoppingDistance = enemyData.fenceStopDistance;
+
+            fence = GameObject.FindGameObjectWithTag("FenceBody");
+
+            fenceData = fence.GetComponent<Fence>();
+
             //GameManager.Instance.fenceTargets.Remove(objectTarget);
             //GameManager.Instance.sheepTargets.Clear();
         }
@@ -140,7 +149,7 @@ public class Enemy : MonoBehaviour
         float firstDistance;
         float secDistance;
 
-        if(GameManager.Instance.sheepTargets.Count != 0)
+        if (GameManager.Instance.sheepTargets.Count != 0)
         {
             firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.sheepTargets.First().transform.position);
 
@@ -158,6 +167,11 @@ public class Enemy : MonoBehaviour
 
             }
 
+            Agent.stoppingDistance = enemyData.sheepStopDistance;
+
+
+            sheepData = activeTarget.GetComponent<NeutralNPC>();
+
             //GameManager.Instance.sheepTargets.Remove(objectTarget);
             //GameManager.Instance.sheepTargets.Clear();
         }
@@ -173,10 +187,6 @@ public class Enemy : MonoBehaviour
         return Vector3.Distance(firstTransform, secTransform);
     }
 
-    public void DisableTarget()
-    {
-        activeTarget.SetActive(false);
-    }
     public IEnumerator AttackDelay()
     {
         if (activeTarget.CompareTag("Fence"))

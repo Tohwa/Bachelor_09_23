@@ -66,6 +66,12 @@ public class NeutralNPC : MonoBehaviour
     private void Update()
     {
         SheepStateMachine.curAnimalState.LogicUpdate();
+
+        if (healthPoints <= 0)
+        {
+            healthPoints = 0;
+            gameObject.SetActive(false);
+        }
     }
 
     private void FixedUpdate()

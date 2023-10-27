@@ -10,7 +10,6 @@ public class CozyState : BaseState
 
     public override void EnterState()
     {
-        base.EnterState();
 
         animal.aggroTrigger.SetActive(false);
         Debug.Log("Sheep has entered the cozy State");
@@ -18,12 +17,10 @@ public class CozyState : BaseState
 
     public override void ExitState()
     {
-        base.ExitState();
     }
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
 
         if(!animal.fence.activeSelf)
         {
@@ -33,11 +30,9 @@ public class CozyState : BaseState
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
     }
 }

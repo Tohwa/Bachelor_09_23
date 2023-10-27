@@ -9,5 +9,6 @@ public class NPCData : ScriptableObject
     public float attackDamage;
     public float attackDelay;
     public float moveSpeed;
-    public float stopDistance;
+    public float fenceStopDistance;
+    public float sheepStopDistance;
 }

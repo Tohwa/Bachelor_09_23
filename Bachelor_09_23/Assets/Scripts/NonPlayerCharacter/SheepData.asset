@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2d10476471bf048ac76f9230ff5c31, type: 3}
   m_Name: SheepData
   m_EditorClassIdentifier: 
-  healthPoints: 4
+  healthPoints: 10
   attackDamage: 0
   attackDelay: 0
-  moveSpeed: 6
-  stopDistance: 0
+  moveSpeed: 3
+  fenceStopDistance: 0
+  sheepStopDistance: 0

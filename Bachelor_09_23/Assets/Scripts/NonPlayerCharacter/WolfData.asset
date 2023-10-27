@@ -15,5 +15,6 @@ MonoBehaviour:
   healthPoints: 2
   attackDamage: 2
   attackDelay: 1.5
-  moveSpeed: 5
-  stopDistance: 3
+  moveSpeed: 3
+  fenceStopDistance: 2
+  sheepStopDistance: 1

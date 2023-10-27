@@ -10,7 +10,6 @@ public class AlarmedState : BaseState
 
     public override void EnterState()
     {
-        base.EnterState();
 
         animal.aggroTrigger.SetActive(true);
         Debug.Log("Sheep has entered an Alarmed State");
@@ -18,12 +17,10 @@ public class AlarmedState : BaseState
 
     public override void ExitState()
     {
-        base.ExitState();
     }
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
 
         if(animal.trigger.enemyClose == true)
         {
@@ -33,11 +30,9 @@ public class AlarmedState : BaseState
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
     }
 }

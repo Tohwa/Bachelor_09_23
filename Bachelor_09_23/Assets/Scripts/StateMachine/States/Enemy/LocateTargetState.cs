@@ -10,34 +10,33 @@ public class LocateTargetState : BaseState
 
     public override void EnterState()
     {
-        base.EnterState();
 
-        enemy.FindTarget();
     }
 
     public override void ExitState()
     {
-        base.ExitState();
 
     }
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
+        enemy.FindTarget();
 
-        if (enemy.activeTarget != null)
+        if (enemy.activeTarget != null && enemy.activeTarget.CompareTag("Fence"))
         {
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseState);
+        }
+        else if(enemy.activeTarget != null && enemy.activeTarget.CompareTag("Sheep"))
+        {
+            enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseAttackState);
         }
     }
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
     }
 }

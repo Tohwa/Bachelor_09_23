@@ -12,6 +12,7 @@ TagManager:
   - Fence
   - Sheep
   - Environment
+  - FenceBody
   layers:
   - Default
   - TransparentFX

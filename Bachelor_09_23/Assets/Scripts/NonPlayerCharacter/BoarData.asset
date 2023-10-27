@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BoarData
   m_EditorClassIdentifier: 
   healthPoints: 5
-  attackDamage: 0
+  attackDamage: 2
   attackDelay: 3
-  moveSpeed: 4
-  stopDistance: 2
+  moveSpeed: 3
+  fenceStopDistance: 2
+  sheepStopDistance: 1
