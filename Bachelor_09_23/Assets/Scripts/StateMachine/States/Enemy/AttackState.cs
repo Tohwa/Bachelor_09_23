@@ -32,6 +32,8 @@ public class AttackState : BaseState
             enemy.canAttack = true;
             enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
         }
+
+        
     }
 
     public override void PhysicsUpdate()

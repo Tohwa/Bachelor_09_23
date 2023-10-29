@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: GoatData
   m_EditorClassIdentifier: 
   healthPoints: 3
-  attackDamage: 0
-  attackDelay: 5
+  attackDamage: 2
+  attackDelay: 1
   moveSpeed: 3
-  stopDistance: 3
+  fenceStopDistance: 0
+  sheepStopDistance: 0

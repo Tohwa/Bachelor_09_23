@@ -27,11 +27,23 @@ public class ChaseAttackState : BaseState
             Debug.Log("Attacked");
             enemy.StartCoroutine(enemy.AttackDelay());
 
-            if (enemy.sheepData.healthPoints == 0)
+            if (enemy.activeTarget.CompareTag("Sheep"))
             {
-                enemy.activeTarget = null;
-                enemy.canAttack = true;
-                enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+                if (enemy.sheepData.healthPoints == 0)
+                {
+                    enemy.activeTarget = null;
+                    enemy.canAttack = true;
+                    enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+                }
+            }
+            else if (enemy.activeTarget.CompareTag("Player"))
+            {
+                if (enemy.playerData.healthPoints == 0)
+                {
+                    enemy.activeTarget = null;
+                    enemy.canAttack = true;
+                    enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+                }
             }
         }
     }

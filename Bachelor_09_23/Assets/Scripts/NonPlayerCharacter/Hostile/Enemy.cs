@@ -28,8 +28,7 @@ public class Enemy : MonoBehaviour
     private NPCData enemyData;
     public NeutralNPC sheepData;
     public Fence fenceData;
-    //[SerializeField]
-    //public Player playerData;
+    public Player playerData;
 
     public GameObject fence;
 
@@ -85,6 +84,7 @@ public class Enemy : MonoBehaviour
             if (gameObject.CompareTag("Goat"))
             {
                 activeTarget = GameObject.FindGameObjectWithTag("Player");
+                playerData = activeTarget.GetComponent<Player>();
                 Debug.Log("Found player as active target.");
             }
             else if (gameObject.CompareTag("Boar") || gameObject.CompareTag("Wolf"))
@@ -195,10 +195,10 @@ public class Enemy : MonoBehaviour
         {
             sheepData.healthPoints -= attackDamage;
         }
-        //else if (activeTarget.CompareTag("Player"))
-        //{
-        //    playerData.healthPoints -= attackDamage;
-        //}
+        else if (activeTarget.CompareTag("Player"))
+        {
+            playerData.healthPoints -= attackDamage;
+        }
 
         canAttack = false;
         yield return new WaitForSeconds(attackDelay);

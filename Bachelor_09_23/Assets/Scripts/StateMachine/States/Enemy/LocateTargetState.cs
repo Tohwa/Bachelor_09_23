@@ -32,6 +32,10 @@ public class LocateTargetState : BaseState
             {
                 enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseAttackState);
             }
+            else if (enemy.activeTarget.CompareTag("Player"))
+            {
+                enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseAttackState);
+            }
         }
     }
 

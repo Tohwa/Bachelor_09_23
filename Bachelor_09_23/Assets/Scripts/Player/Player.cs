@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField]
+    private Transform playerSpawn;
+
+    [SerializeField]
     private SoundRequestCollection requests;
     [SerializeField]
     private AudioData footSteps;
@@ -34,6 +37,10 @@ public class Player : MonoBehaviour
 
     private float lastFireTime;
     public bool fire = false;
+    public float healthPoints;
+
+    private bool canRespawn;
+    private float spawnDelay;
 
     public Vector2 input;
     #endregion
@@ -50,6 +57,8 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
+
+        healthPoints = playerData.healthPoints;
 
         StateMachine.InitPlayerState(IdleState);
     }
@@ -74,6 +83,23 @@ public class Player : MonoBehaviour
             shootScript.Shoot();
             StartCoroutine(shootScript.ShotDelay());
         }
+
+        if(healthPoints <= 0)
+        {
+            healthPoints = 0;
+            gameObject.SetActive(false);
+        }
+
+        if(!gameObject.activeSelf)
+        {
+            StartCoroutine(Respawn());
+
+            if(canRespawn)
+            {
+                gameObject.transform.position = playerSpawn.transform.position;
+                gameObject.SetActive(true);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -84,5 +110,12 @@ public class Player : MonoBehaviour
     public void MovePlayer(float inputX, float inputY)
     {
         transform.Translate(inputX * playerData.moveSpeed * Time.deltaTime, 0, inputY * playerData.moveSpeed * Time.deltaTime);
+    }
+
+    public IEnumerator Respawn()
+    {
+        canRespawn = false;
+        yield return new WaitForSeconds(spawnDelay);
+        canRespawn = true;
     }
 }

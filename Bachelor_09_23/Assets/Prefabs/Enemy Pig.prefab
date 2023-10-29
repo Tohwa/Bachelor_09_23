@@ -171,5 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4819de4214285409917f63237e6451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectTarget: {fileID: 0}
-  enemyData: {fileID: 0}
+  activeTarget: {fileID: 0}
+  prevTarget: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 4eb3829edf5b9e94dbfec416d1f6bfeb, type: 2}
+  sheepData: {fileID: 0}
+  fenceData: {fileID: 0}
+  fence: {fileID: 0}
+  canAttack: 1
