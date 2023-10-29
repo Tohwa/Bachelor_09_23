@@ -85,21 +85,23 @@ public class Enemy : MonoBehaviour
             if (gameObject.CompareTag("Goat"))
             {
                 activeTarget = GameObject.FindGameObjectWithTag("Player");
+                Debug.Log("Found player as active target.");
             }
             else if (gameObject.CompareTag("Boar") || gameObject.CompareTag("Wolf"))
             {
                 if (prevTarget == null)
                 {
                     FindClosestFence();
+                    Debug.Log("Found closest fence as active target.");
                 }
-                else if (prevTarget.CompareTag("Fence"))
+                else if (prevTarget != null)
                 {
                     if (!fence.activeSelf)
                     {
                         FindClosestSheep();
+                        Debug.Log("Found closest sheep as active target.");
                     }
                 }
-                
             }
         }
     }
@@ -151,6 +153,7 @@ public class Enemy : MonoBehaviour
 
         if (GameManager.Instance.sheepTargets.Count != 0)
         {
+
             firstDistance = CalcTargetDistance(gameObject.transform.position, GameManager.Instance.sheepTargets.First().transform.position);
 
             activeTarget = GameManager.Instance.sheepTargets.First();
@@ -164,16 +167,11 @@ public class Enemy : MonoBehaviour
                     activeTarget = GameManager.Instance.sheepTargets[x];
                     firstDistance = secDistance;
                 }
-
             }
 
             Agent.stoppingDistance = enemyData.sheepStopDistance;
 
-
             sheepData = activeTarget.GetComponent<NeutralNPC>();
-
-            //GameManager.Instance.sheepTargets.Remove(objectTarget);
-            //GameManager.Instance.sheepTargets.Clear();
         }
         else
         {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WolfData
   m_EditorClassIdentifier: 
   healthPoints: 2
-  attackDamage: 2
+  attackDamage: 5
   attackDelay: 1.5
   moveSpeed: 3
   fenceStopDistance: 2

@@ -71,6 +71,8 @@ public class NeutralNPC : MonoBehaviour
         {
             healthPoints = 0;
             gameObject.SetActive(false);
+            GameManager.Instance.sheepTargets.Remove(gameObject);
+
         }
     }
 

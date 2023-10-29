@@ -11,7 +11,7 @@ public class AttackState : BaseState
 
     public override void EnterState()
     {
-        Debug.Log("entered AttackState");
+
     }
 
     public override void ExitState()
@@ -20,7 +20,7 @@ public class AttackState : BaseState
 
     public override void LogicUpdate()
     {
-        if (enemy.canAttack)
+        if (enemy.canAttack && enemy.activeTarget != null)
         {
             Debug.Log("Attacked");
             enemy.StartCoroutine(enemy.AttackDelay());

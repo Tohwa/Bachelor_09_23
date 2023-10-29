@@ -10,7 +10,7 @@ public class LocateTargetState : BaseState
 
     public override void EnterState()
     {
-
+        Debug.Log("Locating...");
     }
 
     public override void ExitState()
@@ -22,13 +22,16 @@ public class LocateTargetState : BaseState
     {
         enemy.FindTarget();
 
-        if (enemy.activeTarget != null && enemy.activeTarget.CompareTag("Fence"))
+        if (enemy.activeTarget != null)
         {
-            enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseState);
-        }
-        else if(enemy.activeTarget != null && enemy.activeTarget.CompareTag("Sheep"))
-        {
-            enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseAttackState);
+            if (enemy.activeTarget.CompareTag("Fence"))
+            {
+                enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseState);
+            }
+            else if (enemy.activeTarget.CompareTag("Sheep"))
+            {
+                enemy.EnemyStateMachine.ChangeEnemyState(enemy.ChaseAttackState);
+            }
         }
     }
 

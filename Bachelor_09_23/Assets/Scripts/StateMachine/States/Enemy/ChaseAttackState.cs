@@ -17,29 +17,23 @@ public class ChaseAttackState : BaseState
 
     public override void ExitState()
     {
+        Debug.Log("No longer chaseAttacking");
     }
 
     public override void LogicUpdate()
     {
-
-        if (enemy.activeTarget == null)
-        {
-            enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
-        }
-
-        if (enemy.canAttack && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance * 4)
+        if (enemy.canAttack && enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance * 4 && enemy.activeTarget != null)
         {
             Debug.Log("Attacked");
             enemy.StartCoroutine(enemy.AttackDelay());
-        }
 
-        if (enemy.sheepData.healthPoints == 0)
-        {
-            enemy.activeTarget = null;
-            enemy.canAttack = true;
-            enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+            if (enemy.sheepData.healthPoints == 0)
+            {
+                enemy.activeTarget = null;
+                enemy.canAttack = true;
+                enemy.EnemyStateMachine.ChangeEnemyState(enemy.LocateState);
+            }
         }
-
     }
 
     public override void PhysicsUpdate()
