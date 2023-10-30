@@ -45,6 +45,8 @@ public class NeutralNPC : MonoBehaviour
 
     private void Start()
     {
+        target = GameObject.FindGameObjectWithTag("sheepOri").transform;
+
         RB = GetComponent<Rigidbody>();
         Agent = GetComponent<NavMeshAgent>();
         Anim = GetComponent<Animator>();
