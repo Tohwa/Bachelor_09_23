@@ -42,14 +42,4 @@ public class SliderBehaviour : MonoBehaviour
             playerImage.color = Color.white;
         }
     }
-
-    public void onFenceValueChange()
-    {
-        fenceSlider.value = fenceData.durability;
-    }
-
-    public void OnPlayerValueChange()
-    {
-        playerSlider.value = playerData.healthPoints;
-    }
 }
