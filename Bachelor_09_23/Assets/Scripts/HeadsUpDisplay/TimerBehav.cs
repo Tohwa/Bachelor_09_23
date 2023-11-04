@@ -6,7 +6,7 @@ using UnityEngine;
 public class TimerBehav : MonoBehaviour
 {
     [SerializeField]
-    public float timer { get; private set; }
+    public float timer = 30f;
 
     [SerializeField]
     private TMP_Text stateText;
@@ -27,10 +27,12 @@ public class TimerBehav : MonoBehaviour
         if (timer <= 0 && stateText.text == "PrepState")
         {
             stateText.SetText("WaveState");
+            timer = 30;
         }
-        else
+        else if(timer <= 0 && stateText.text == "WaveState")
         {
             stateText.SetText("PrepState");
+            timer = 30;
         }
 
     }
