@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0c18c4019f4d04390d2e3148ae9ecf, type: 3}
   m_Name: fenceData
   m_EditorClassIdentifier: 
-  healthPoints: 10
+  healthPoints: 50
