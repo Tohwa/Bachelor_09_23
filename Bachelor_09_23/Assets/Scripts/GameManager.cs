@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public List<GameObject> sheepTargets = new();
 
+    public int woodCount;
+    public int crystalCount;
+
     private Array foundFences;
     private Array foundSheep;
 
