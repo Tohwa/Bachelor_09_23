@@ -32,7 +32,4 @@ public class CozyState : BaseState
     {
     }
 
-    public override void UpdateState()
-    {
-    }
 }

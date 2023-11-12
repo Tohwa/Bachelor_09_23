@@ -41,8 +41,4 @@ public class AttackState : BaseState
 
     }
 
-    public override void UpdateState()
-    {
-
-    }
 }

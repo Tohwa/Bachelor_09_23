@@ -62,11 +62,6 @@ public abstract class BaseState
 
     }
 
-    public virtual void UpdateState()
-    {
-
-    }
-
     public virtual void ExitState()
     {
         //player.anim.setBool(animBoolName, false);

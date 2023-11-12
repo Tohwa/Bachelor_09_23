@@ -31,8 +31,4 @@ public class AlarmedState : BaseState
     public override void PhysicsUpdate()
     {
     }
-
-    public override void UpdateState()
-    {
-    }
 }

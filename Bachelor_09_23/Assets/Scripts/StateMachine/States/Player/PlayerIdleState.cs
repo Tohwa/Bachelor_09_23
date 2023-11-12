@@ -39,8 +39,4 @@ public class PlayerIdleState : BaseState
         base.PhysicsUpdate();
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }

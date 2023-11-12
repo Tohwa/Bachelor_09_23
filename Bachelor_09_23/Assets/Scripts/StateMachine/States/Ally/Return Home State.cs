@@ -30,8 +30,4 @@ public class ReturnHomeState : BaseState
         base.PhysicsUpdate();
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }

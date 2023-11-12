@@ -203,5 +203,5 @@ public class Enemy : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(attackDelay);
         canAttack = true;
-    }
+    }    
 }

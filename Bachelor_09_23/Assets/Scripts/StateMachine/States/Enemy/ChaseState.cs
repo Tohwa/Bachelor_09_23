@@ -41,8 +41,4 @@ public class ChaseState : BaseState
     {
         enemy.ChaseTarget(enemy.activeTarget);        
     }
-
-    public override void UpdateState()
-    {
-    }
 }

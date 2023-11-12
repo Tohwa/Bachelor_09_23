@@ -43,7 +43,4 @@ public class LocateTargetState : BaseState
     {
     }
 
-    public override void UpdateState()
-    {
-    }
 }

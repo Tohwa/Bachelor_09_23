@@ -39,8 +39,4 @@ public class PlayerMoveState : BaseState
         player.MovePlayer(player.input.x, player.input.y);
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }

@@ -28,8 +28,4 @@ public class PreparationState : BaseState
         base.PhysicsUpdate();
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }

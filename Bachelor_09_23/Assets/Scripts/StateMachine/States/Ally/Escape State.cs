@@ -40,7 +40,4 @@ public class EscapeState : BaseState
     {
     }
 
-    public override void UpdateState()
-    {
-    }
 }

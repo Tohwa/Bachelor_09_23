@@ -47,10 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174e70d424380a446a9a75fc371c30ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
   rb: {fileID: 2848473400367048061}
-  playerData: {fileID: 11400000, guid: dbe86fde70fad29489870d1c41a85d25, type: 2}
+  playerSpawn: {fileID: 0}
   requests: {fileID: 11400000, guid: 0953fb695526e0e488a65d573ec5b0a1, type: 2}
   footSteps: {fileID: 11400000, guid: 289f052a45086ed49a08816ebd94b486, type: 2}
+  playerData: {fileID: 11400000, guid: dbe86fde70fad29489870d1c41a85d25, type: 2}
+  shootScript: {fileID: 0}
+  fireDelay: 0
+  fire: 0
+  healthPoints: 0
   input: {x: 0, y: 0}
 --- !u!114 &2963142076008684806
 MonoBehaviour:
@@ -64,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8c719f2d936ba4a9d07a48626fdef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!114 &3790681481577093388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +182,7 @@ GameObject:
   - component: {fileID: 2557899785306957173}
   m_Layer: 0
   m_Name: PlayerBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
